@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="appOne">
+      <h3>{{title}}</h3>
+    </div>
+    <div id="appTwo">
+      <h3>{{title}}</h3>
+      <button v-on:click="changeTitle">Başlıkları değiştir</button>
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+
+      const titleOne = "1. Başlık";
+      const titleTwo = "2. Başlık";
+
+      var one = createApp({
+        data() {
+          return {
+            title: titleOne,
+            trueOrFalse: false,
+          };
+        },
+      }).mount("#appOne");
+
+      var two = createApp({
+        data() {
+          return {
+            title: titleTwo,
+          };
+        },
+        methods: {
+          changeTitle: function () {
+            one.trueOrFalse = !one.trueOrFalse;
+            if (one.trueOrFalse == true) {
+              one.title = titleTwo;
+              this.title = titleOne;
+            }
+            else{
+                one.title=titleOne;
+                this.title=titleTwo;
+            }
+          },
+        },
+      }).mount("#appTwo");
+    </script>
+  </body>
+</html>
